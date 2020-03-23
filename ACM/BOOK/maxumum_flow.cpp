@@ -23,7 +23,7 @@ int selectPath( int nthVisit, size_t thisIdx )
 {
     if ( thisIdx == TARGET ) {
         return INT32_MAX ;
-    } else if ( Graph[thisIdx].resAdjList_m.size() == 0 || Graph[thisIdx].nthVisit == nthVisit ) {
+    } else if ( Graph[thisIdx].resAdjList_m.size() == 0 || Graph[thisIdx].nthVisit == nthVisit ) { // 应该设置stack而非nthVisit，当然也可以直接找无权最短路，不找最大流
         return 0 ;
     }
 
