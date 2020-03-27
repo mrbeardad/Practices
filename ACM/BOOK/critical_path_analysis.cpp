@@ -40,7 +40,7 @@ int main()
         }
 
         if ( thisPrev.empty() ) {
-            Graph.insert( { thisNumr, { 0, thisWeight, -1, { { 0, thisWeight } }, {} } } ) ;
+            Graph.insert( { thisNumr, { 0, thisWeight, -1, { { 0, thisWeight } }, {} } } ) ; // 注意：如果输入没有拓扑排序，则应该使用operator[]代替insert，否则修改prev时会隐式的添加元素导致后面插入失败
             Graph[0].next_m.push_back( { thisNumr, thisWeight } ) ;
         } else if ( thisPrev.size() == 1 ) {
             Graph.insert( { thisNumr, { 0, Graph[thisPrev.front()].early_m + thisWeight, -1, { { thisPrev.front(), thisWeight } }, {} } } ) ;
