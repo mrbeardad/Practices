@@ -8,13 +8,12 @@ int main()
     ios::sync_with_stdio( false ) ;
     std::cin.tie( nullptr ) ;
 
-    string theString( 10001ul, '\0' ) ;
+    string theString( 1000ul, '\0' ) ;
     int oneColCnt ;
     cin >> oneColCnt ;
     cin.ignore() ;
     getline( cin, theString ) ;
     int stringSize{ (int)theString.size() } ;
-    theString[--stringSize] = 0 ; // 丢弃newline
 
     int lastColStart{ stringSize % oneColCnt } ;
     int needSpace ; // 行号大于它就要输出行首空格占位符，行号1开始
