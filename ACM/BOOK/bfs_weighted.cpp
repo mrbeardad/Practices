@@ -7,67 +7,64 @@
 
 using namespace std ;
 
-struct GraphNode
+struct Vertex
 {
     int dist_m ;
     size_t path_m ;
-    bool isEnqueue_m ;
-    vector<pair<size_t, int>> adjNodes_m ; // idx and weight
+    bool isInQueue_m ;
+    vector<pair<size_t, int> > adjList_m ;
 } ;
 
-constexpr size_t BEGIN{ 0 } ;
-constexpr size_t END{ 5 } ;
+constexpr size_t SOURCE{ 1 } ;
+constexpr size_t TARGET{ 6 } ;
 
-vector<GraphNode> Graph2bfs ;
 
 int main()
 {
     ios::sync_with_stdio(false) ;
     cin.tie(nullptr) ;
 
-    string oneLine{} ;
-    istringstream oneLineStrm{} ;
-    vector<pair<size_t, int>> tmpAdjNodes{} ;
-    size_t tmpIdx{}, tmpWeight{} ;
+    vector<Vertex> Graph ;
+    string oneLine ;
+    istringstream oneLineStrm ;
+    vector<pair<size_t, int> > tmp4Adj ;
+    size_t tmpIdx, tmpWeight ;
     while ( getline( cin, oneLine ) ) {
-        oneLineStrm.str(move(oneLine)) ;
+        oneLineStrm.str( move( oneLine ) ) ;
         while ( oneLineStrm >> tmpIdx >> tmpWeight ) {
-            tmpAdjNodes.push_back(pair{ tmpIdx, tmpWeight }) ;
+            tmp4Adj.push_back( { tmpIdx, tmpWeight } ) ;
         }
-        Graph2bfs.push_back({ -1, 0, 0, move(tmpAdjNodes) }) ;
+        Graph.push_back( { INT32_MAX, SOURCE, false, move( tmp4Adj ) } ) ;
         oneLineStrm.clear() ;
     }
 
-    queue<size_t> bfsQueue{} ;
-    bfsQueue.push(BEGIN) ;
-    Graph2bfs[BEGIN].dist_m = 0 ;
-    while ( !bfsQueue.empty() ) {
-        auto& thisNodeIdx{ bfsQueue.front() } ;
-        auto& thisNode{ Graph2bfs[thisNodeIdx] } ;
-        for ( auto& thisAdjInVec : thisNode.adjNodes_m ) { // 遍历获取pair<size_t(idx), int(dist)>
-            auto& thisAdjInGraph{ Graph2bfs[thisAdjInVec.first] } ; // 引用Grapu2bfs中的Node
-            if ( thisAdjInGraph.dist_m == -1 ) {
-                thisAdjInGraph.dist_m = thisNode.dist_m + thisAdjInVec.second ;
-                thisAdjInGraph.path_m = thisNodeIdx ;
-                thisAdjInGraph.isEnqueue_m = 1 ;
-                bfsQueue.push(thisAdjInVec.first) ;
-            } else if ( int thisDist{ thisNode.dist_m + thisAdjInVec.second }; thisAdjInGraph.dist_m > thisDist ) {
-                thisAdjInGraph.dist_m = thisDist ;
-                thisAdjInGraph.path_m = thisNodeIdx ;
-                if ( !thisAdjInGraph.isEnqueue_m ) {  // 判断该邻节点是否已在队中
-                    thisAdjInGraph.isEnqueue_m = 1 ;
-                    bfsQueue.push(thisAdjInVec.first) ;
+    queue<size_t> bfsQueue ;
+    bfsQueue.push( SOURCE ) ;
+    Graph[SOURCE].dist_m = 0 ;
+    Graph[SOURCE].isInQueue_m = true ;
+    while ( bfsQueue.size() ) {
+        auto& thisVertexIdx{ bfsQueue.front() } ;
+        auto& thisVertex{ Graph[thisVertexIdx] } ;
+        bfsQueue.pop() ;
+        thisVertex.isInQueue_m = false ;
+        for ( auto& thisAdj : thisVertex.adjList_m ) {
+            int thisDist{ thisVertex.dist_m + thisAdj.second } ;
+            auto& thisAdjVertex{ Graph[thisAdj.first] } ;
+            if ( thisDist < thisAdjVertex.dist_m ) {
+                thisAdjVertex.dist_m = thisDist ;
+                thisAdjVertex.path_m = thisVertexIdx ;
+                if ( !thisAdjVertex.isInQueue_m ) {
+                    bfsQueue.push( thisAdj.first ) ;
+                    thisAdjVertex.isInQueue_m = true ;
                 }
             }
         }
-        bfsQueue.pop() ;
     }
 
-    int distance{} ;
-    for ( auto prevPath{ END }; prevPath != BEGIN; prevPath = Graph2bfs[prevPath].path_m ) {
-        cout << prevPath << ' ' ;
+    for ( auto path2Target{ TARGET }; path2Target != SOURCE; path2Target = Graph[path2Target].path_m ) {
+        cout << path2Target << ' ' ;
     }
-    cout << BEGIN << '\n' << Graph2bfs[END].dist_m << endl ;
+    cout << SOURCE << "\nDistance: " << Graph[TARGET].dist_m << endl ;
 
     return 0 ;
 }

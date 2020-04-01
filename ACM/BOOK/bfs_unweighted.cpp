@@ -6,58 +6,58 @@
 
 using namespace std ;
 
-struct GraphNode
+struct Vertex
 {
     int dist_m ;
     size_t path_m ;
-    vector<size_t> adjNodes_m ;
+    vector<size_t> adjList_m ;
 } ;
 
-constexpr size_t BEGIN{ 0 } ;
-constexpr size_t END{ 7 } ;
-vector<GraphNode> Graph2bfs{} ;
+constexpr size_t SOURCE{ 1 } ;
+constexpr size_t TARGET{ 7 } ;
 
 int main()
 {
-    ios::sync_with_stdio(false) ;
-    cin.tie(nullptr) ;
+    ios::sync_with_stdio( false ) ;
+    cin.tie( nullptr ) ;
 
-    string oneLine{} ;
-    istringstream oneLineStrm{} ;
-    vector<size_t> tmp2push{} ;
+    vector<Vertex> Graph ;
+
+    string oneLine ;
+    istringstream oneLineStrm ;
+    vector<size_t> tmp4Adj ;
     while ( getline( cin, oneLine ) ) {
-        oneLineStrm.str(move(oneLine)) ;
-        size_t tmp ;
-        while ( oneLineStrm >> tmp ) {
-            tmp2push.push_back(tmp) ;
+        oneLineStrm.str( move( oneLine ) ) ;
+        size_t tmp4Idx ;
+        while ( oneLineStrm >> tmp4Idx ) {
+            tmp4Adj.push_back( tmp4Idx ) ;
         }
-        Graph2bfs.push_back({ -1, 0, move(tmp2push) }) ;
+        Graph.push_back( { -1, SOURCE, move( tmp4Adj ) } ) ;
         oneLineStrm.clear() ;
     }
 
     queue<size_t> bfsQueue ;
-    bfsQueue.push(BEGIN) ;
+    bfsQueue.push( SOURCE ) ;
     int nowDist{} ;
-    Graph2bfs[BEGIN].dist_m = nowDist ;
-    while ( !bfsQueue.empty() ) {
+    Graph[SOURCE].dist_m = nowDist ;
+    while ( bfsQueue.size() ) {
         ++nowDist ;
-        auto& needProc{ Graph2bfs[bfsQueue.front()] } ;
-        for ( auto& adj : needProc.adjNodes_m ) {
-            if ( Graph2bfs[adj].dist_m != -1 ) {
-                continue ;
-            }
-            Graph2bfs[adj].dist_m = nowDist ;
-            Graph2bfs[adj].path_m = bfsQueue.front() ;
-            bfsQueue.push(adj) ;
-        }
+        size_t thisVertexIdx{ bfsQueue.front() } ;
+        auto& thisVertex{ Graph[thisVertexIdx] } ;
         bfsQueue.pop() ;
+        for ( auto& thisAdjIdx : thisVertex.adjList_m ) {
+            if ( Graph[thisAdjIdx].dist_m == -1 ) {
+                Graph[thisAdjIdx].dist_m = nowDist ;
+                Graph[thisAdjIdx].path_m = thisVertexIdx ;
+                bfsQueue.push( thisAdjIdx ) ;
+            }
+        }
     }
 
-    cout << "fuck!" << endl ;
-    for ( size_t path2prev{ END }; path2prev != BEGIN; path2prev = Graph2bfs[path2prev].path_m ) {
-        cout << path2prev << ' ' ;
+    for ( size_t path2Source{ TARGET }; path2Source != SOURCE; path2Source = Graph[path2Source].path_m ) {
+        cout << path2Source << ' ' ;
     }
-    cout << BEGIN << endl ;
+    cout << SOURCE << "\nDistance: " << Graph[TARGET].dist_m ;
 
     return 0 ;
 }
