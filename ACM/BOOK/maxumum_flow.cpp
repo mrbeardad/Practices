@@ -4,69 +4,72 @@
 #include <sstream>
 #include <string>
 #include <utility>
+#include <queue>
 
 using namespace std ;
 
-struct GraphVertex
+struct Vertex
 {
-    size_t maxPath_m ;
-    int nthVisit ;
+    size_t path_m ;
+    int pathFlow_m ;
+    int nthVisit_m ;
     unordered_map<size_t, int> flowAdjList_m ;
     unordered_map<size_t, int> resAdjList_m ;
 } ;
 
 constexpr size_t SOURCE{ 0 } ;
 constexpr size_t TARGET{ 5 } ;
-vector<GraphVertex> Graph{} ;
+vector<Vertex> Graph{} ;
+queue<size_t> bfsQueue{} ;
 
-int selectPath( int nthVisit, size_t thisIdx )
+void selectPath( int nthVisit )
 {
-    if ( thisIdx == TARGET ) {
-        return INT32_MAX ;
-    } else if ( Graph[thisIdx].resAdjList_m.size() == 0 || Graph[thisIdx].nthVisit == nthVisit ) { // 应该设置stack而非nthVisit，当然也可以直接找无权最短路，不找最大流
-        return 0 ;
-    }
-
-    Graph[thisIdx].nthVisit = nthVisit ;
-    int maxFlow{} ;
-    size_t maxPath{} ;
-    for ( auto& thisAdj : Graph[thisIdx].resAdjList_m ) {
-        if ( thisAdj.second == 0 ) { // 残余流量为0则代表此路不通
-            continue ;
-        }
-        int thisFlow{ selectPath( nthVisit, thisAdj.first ) } ;
-        thisFlow = thisFlow < thisAdj.second ? thisFlow : thisAdj.second ;
-        if ( thisFlow > maxFlow ) {
-            maxFlow = thisFlow ;
-            maxPath = thisAdj.first ;
-        }
-    }
-    Graph[thisIdx].maxPath_m = maxPath ;
-    return maxFlow ;
-}
-
-void computeFlow()
-{
-    size_t end{ Graph.size() } ;
-    for ( size_t idx{}; idx < end; ++idx ){
-        auto& thisVertex{ Graph[idx] } ;
-        for ( auto& thisAdj : thisVertex.flowAdjList_m ) {
-            thisAdj.second = Graph[thisAdj.first].resAdjList_m[idx] ;
+    Graph[SOURCE].nthVisit_m = nthVisit ;
+    bfsQueue.push( SOURCE ) ;
+    while ( bfsQueue.size() ) {
+        size_t thisVertexIdx{ bfsQueue.front() } ;
+        auto& thisVertex{ Graph[thisVertexIdx] } ;
+        bfsQueue.pop() ;
+        for ( auto& thisAdj : thisVertex.resAdjList_m ) {
+            auto& thisAdjVertex{ Graph[thisAdj.first] } ;
+            if ( thisAdjVertex.nthVisit_m < nthVisit && thisAdj.second ) {
+                thisAdjVertex.nthVisit_m = nthVisit ;
+                thisAdjVertex.path_m = thisVertexIdx ;
+                int prevFlow{ thisVertex.pathFlow_m }, thisFlow{ thisAdj.second } ;
+                thisAdjVertex.pathFlow_m = prevFlow < thisFlow ? prevFlow : thisFlow ;
+                bfsQueue.push( thisAdj.first ) ;
+            }
         }
     }
 }
 
 int maxFlow()
 {
-    for ( int thisPathFlow{}, nthVisit{ 1 }; thisPathFlow = selectPath( nthVisit, SOURCE ); ++nthVisit ) {
-        for ( size_t idx{SOURCE}; idx != TARGET; idx = Graph[idx].maxPath_m ) {
+    Graph[SOURCE].pathFlow_m = INT32_MAX ;
+    int nthVisit{ 1 } ;
+    selectPath( nthVisit ) ;
+    while ( Graph[TARGET].nthVisit_m == nthVisit ) {
+        for ( size_t idx{TARGET}; idx != SOURCE; idx = Graph[idx].path_m ) {
             auto& thisVertex{ Graph[idx] } ;
-            thisVertex.resAdjList_m[thisVertex.maxPath_m] -= thisPathFlow ;
-            Graph[thisVertex.maxPath_m].resAdjList_m[idx] += thisPathFlow ;
+            int pathFlow{ Graph[TARGET].pathFlow_m } ;
+            thisVertex.resAdjList_m[thisVertex.path_m] += pathFlow ;
+            Graph[thisVertex.path_m].resAdjList_m[idx] -= pathFlow ;
         }
+        ++nthVisit ;
+        selectPath( nthVisit ) ;
     }
 
-    computeFlow() ;
+    for ( size_t idx{}, end{ Graph.size() }; idx < end; ++idx ) {
+        auto& thisVertex{ Graph[idx] } ;
+        for ( auto& thisAdj : thisVertex.flowAdjList_m ) {
+            auto& point2this{ Graph[thisAdj.first] } ;
+            if ( point2this.flowAdjList_m.find( idx ) != point2this.flowAdjList_m.end() ) {
+                thisAdj.second = point2this.resAdjList_m[idx] - point2this.flowAdjList_m[idx] ;
+            } else {
+                thisAdj.second = point2this.resAdjList_m[idx] ;
+            }
+        }
+    }
 
     int maxFlow{} ;
     for ( auto& eachAdj : Graph[TARGET].resAdjList_m ) {
@@ -80,23 +83,25 @@ int main()
     ios::sync_with_stdio(false) ;
     cin.tie(nullptr) ;
 
-    string oneLine{} ;
-    istringstream oneLineStrm{} ;
-    unordered_map<size_t, int> tmpflowAdjList{} ;
-    unordered_map<size_t, int> tmpresAdjList_m{} ;
+    string oneLine ;
+    istringstream oneLineStrm ;
+    unordered_map<size_t, int> tmpresAdjList ;
+    unordered_map<size_t, int> tmpflowAdjList ;
     while ( getline( cin, oneLine ) ) {
-        oneLineStrm.str(move(oneLine)) ;
+        oneLineStrm.str( move( oneLine ) ) ;
         size_t tmpIdx{} ;
         int tmpCap{} ;
         while ( oneLineStrm >> tmpIdx >> tmpCap ) {
-            tmpflowAdjList[tmpIdx] = 0 ;
-            tmpresAdjList_m[tmpIdx] = tmpCap ;
+            tmpresAdjList[tmpIdx] = tmpCap ;
+            tmpflowAdjList[tmpIdx] = tmpCap ;
         }
-        Graph.push_back(GraphVertex{ 0, 0, move(tmpflowAdjList), move(tmpresAdjList_m) }) ;
+        Graph.push_back( Vertex{ 0, 0, 0, move( tmpflowAdjList ), move( tmpresAdjList ) } ) ;
         oneLineStrm.clear() ;
     }
     cout << maxFlow() << endl ;
-    for ( auto& thisVertex : Graph ) {
+    for ( size_t idx{}, end{ Graph.size() }; idx < end; ++idx ) {
+        cout << idx << ": " ;
+        auto& thisVertex{ Graph[idx] } ;
         for ( auto& thisAdj : thisVertex.flowAdjList_m ) {
             cout << thisAdj.first << ' ' << thisAdj.second << "\t\t" ;
         }
