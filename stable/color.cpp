@@ -31,22 +31,22 @@ private:
     int nowColor_m ;
 
     static inline array<const char*, 16> Colors{
-                                                 "\e[m\e[2;31m",
-                                                 "\e[m\e[2;33m",
-                                                 "\e[m\e[2;32m",
-                                                 "\e[m\e[2;36m",
-                                                 "\e[m\e[2;37m",
-                                                 "\e[m\e[1;37m",
+                                                 "\e[m\e[1;31m",
+                                                 "\e[m\e[1;34m",
+                                                 "\e[m\e[1;35m",
                                                  "\e[m\e[1;33m",
                                                  "\e[m\e[1;32m",
                                                  "\e[m\e[1;36m",
+                                                 "\e[m\e[1;37m",
+                                                 "\e[m\e[1;36m",
+                                                 "\e[m\e[1;32m",
+                                                 "\e[m\e[1;33m",
+                                                 "\e[m\e[1;35m",
+                                                 "\e[m\e[1;34m",
+                                                 "\e[m\e[1;31m",
                                                  "\e[m\e[1;34m",
                                                  "\e[m\e[1;35m",
-                                                 "\e[m\e[1;31m",
-                                                 "\e[m\e[2;31m",
-                                                 "\e[m\e[2;35m",
-                                                 "\e[m\e[2;34m",
-                                                 "\e[m\e[30m",
+                                                 "\e[m\e[1;33m",
                                                } ;
 } ;
 

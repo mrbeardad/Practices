@@ -4,7 +4,7 @@
 
 namespace my_header
 {
-    class MyHash
+    class Hash
     {
     public:
         template <typename ...Types>
