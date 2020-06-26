@@ -16,14 +16,12 @@ int main(int argc, char *argv[])
     ios::sync_with_stdio(false) ;
     cin.tie(nullptr) ;
 
-    cout << "\n\e[m-----------------------------------------------------------------" << endl ;
-
     auto runtimeBegin = chrono::steady_clock::now() ;
 
     if ( fork() == 0 ) {
         if ( execv( argv[1], &argv[1] ) != 1 ) {
             cout << argv[1] << '\n' ;
-            cout << "\e[31mQuickrun Error: \e[33mOh~ my dear! Please give me the \e[35mcorrect\e[33m and \e[35mcomplete\e[33m execute path, OK?!\e[m" << endl ;
+            cout << "\033[31mQuickrun Error: \033[33mOh~ my dear! Please give me the \033[35mcorrect\033[33m and \033[35mcomplete\033[33m execute path, OK?!\033[m" << endl ;
             exit(1) ;
         }
     }
@@ -35,13 +33,13 @@ int main(int argc, char *argv[])
     string exitString ;
     if ( WIFEXITED(status) ) {
         if ( int exitCode = WEXITSTATUS(status); exitCode == 0 ) {
-            exitString = "\e[1;32mcode=0\e[m" ;
+            exitString = "\033[1;32mcode=0\033[m" ;
         } else {
-            exitString = "\e[1;33mcode=" + to_string(exitCode) + "\e[m" ;
+            exitString = "\033[1;33mcode=" + to_string(exitCode) + "\033[m" ;
         }
     } else if ( WIFSIGNALED(status) ) {
         int signalNum{ WTERMSIG(status) } ;
-        exitString = "\e[1;31mSignal=" + to_string(signalNum) + Signal[signalNum + 1] + "\e[m" ;
+        exitString = "\033[1;31mSignal=" + to_string(signalNum) + Signal[signalNum - 1] + "\033[m" ;
     }
 
     double timeLen ;
@@ -53,7 +51,7 @@ int main(int argc, char *argv[])
         timeLen = runtimelen.count() / 1e3 ;
         timeUnit = " ms." ;
     }
-    cout << setprecision( 3 ) << fixed << "\n\e[32m[END]\e[m exit with " << exitString << " in \e[36m" << timeLen << timeUnit << endl ;
+    cout << setprecision( 3 ) << fixed << "\n\033[32m[END]\033[m exit with " << exitString << " in \033[36m" << timeLen << timeUnit << endl ;
 
     return 0 ;
 }
