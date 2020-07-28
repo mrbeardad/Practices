@@ -1,54 +1,60 @@
-#include <condition_variable>
-#include <execution>
-#include <future>
-#include <iomanip>
-#include <ios>
+#include "test.hpp"
+#include <cmath>
 #include <iostream>
-#include <mutex>
-#include <numeric>
 #include <regex>
-#include <sstream>
-#include <thread>
-#include <vector>
+#include <utility>
 
-using namespace std;
+using std::cin;
+using std::cout;
 
-mutex MutexLock;
-condition_variable CondVar;
-
-stringstream strm;
-
-int C{};
-
-void p1()
+namespace
 {
-    // unique_lock lg{MutexLock};
-    // CondVar.wait(lg, [](){return !C;});
-    for (int i{}; i < 10; ++i) {
-        strm << "1" << flush ;
-    }
-    ++C;
-} 
+    template <typename T>
+    class Base
+    {
+    public:
+        void func() const
+        {
+            std::cout << "hi" << std::endl;
+        }
+    private:
+        int i_m;
+    };
 
-void p2()
-{
-    // unique_lock lg{MutexLock};
-    // CondVar.wait(lg, [](){return C;});
-    for (int i{}; i < 10; ++i) {
-        strm << "0" << flush;
+    template <typename T>
+    class Derived: Base<T>
+    {
+    public:
+        void test()
+        {
+            this->func();
+        }
+    private:
+        
+    };
+
+    template <typename T>
+    void func(T&& t)
+    {
+        std::cout << t << std::endl;
     }
-}
+
+    template <typename T, typename... Types>
+    void func(T&& t, Types&&... args)
+    {
+        std::cout << t << std::endl;
+        func(std::forward<Types>(args)...);
+    }
+
+} // namespace
 
 int main()
 {
-    ios::sync_with_stdio(false);
+    std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
 
-    // string s{"function()  函数()"};
-    // cout << regex_replace(s, regex{R"((\(.*?\)))"}, "\033[7m$1\033[m") << endl;
-    cout << "AMD YES!" << endl;
+    cout << std::regex_replace("thisisatest.", std::regex{R"(((is)\2))"}, "$``\e[36m$&\e[m$''");
+    std::vector
 
     return 0;
 }
-
-
