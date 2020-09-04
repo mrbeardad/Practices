@@ -6,9 +6,15 @@ int main()
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
 
-    std::filesystem::directory_entry file{"/tmp/fs.cpp"};
-    std::cout << std::boolalpha << file.exists() << std::endl;
-    std::cout << file.hard_link_count() << std::endl;
+    std::filesystem::path file{"~/.cheat/notes"};
+    std::cout << file.root_name() << std::endl;
+    std::cout << file.root_path() << std::endl;
+    std::cout << file.root_directory() << std::endl;
+    std::cout << file.relative_path() << std::endl;
+    std::cout << file.parent_path() << std::endl;
+    std::cout << file.filename() << std::endl;
+    std::cout << file.stem() << std::endl;
+    std::cout << file.extension() << std::endl;
 
     return 0;
 }

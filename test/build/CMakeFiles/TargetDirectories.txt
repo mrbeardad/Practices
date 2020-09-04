@@ -1,0 +1,2 @@
+/home/beardad/Practices/test/build/CMakeFiles/rebuild_cache.dir
+/home/beardad/Practices/test/build/CMakeFiles/edit_cache.dir

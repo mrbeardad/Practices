@@ -1,6 +1,10 @@
 #include <cmath>
+#include <filesystem>
+#include <fstream>
 #include <iostream>
 #include <regex>
+#include <string_view>
+#include <utility>
 #include <utility>
 
 using std::cin;
@@ -47,12 +51,19 @@ namespace
 
 } // namespace
 
+template <template <typename, auto...> class INTS, typename T, T... I>
+void test(INTS<T, I...>)
+{
+    ((std::cout << I), ... );
+}
+
 int main()
 {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
 
-    cout << std::regex_replace("thisisatest.", std::regex{R"(((is)\2))"}, "$``\e[36m$&\e[m$''");
+    auto i = 2e24 + 1;
+    std::cout << static_cast<float>(i);
 
     return 0;
 }
