@@ -18,10 +18,7 @@
 #include <utility>
 #include <vector>
 
-#define int int32_t
-#define long int64_t
-
-using std::literals::operator""s;
+#include "mine.hpp"
 
 namespace
 {

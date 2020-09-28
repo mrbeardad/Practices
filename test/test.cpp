@@ -8,6 +8,7 @@
 #include <iostream>
 #include <map>
 #include <regex>
+#include <string>
 #include <string_view>
 #include <tuple>
 #include <unistd.h>
@@ -22,7 +23,7 @@ namespace
 }
 
 void outer();
-
+namespace fs = std::filesystem;
 template <typename T>
 void test(T&& t)
 {
@@ -35,6 +36,8 @@ int main(int argc, char* argv[])
     std::cin.tie(nullptr);
 
     std::cout << std::system("bash -c \"miro <(cat ~/.cheat/README.md)\"");
+    
+    std::filesystem::exists
 
     return 0;
 }
