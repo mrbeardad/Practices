@@ -7,8 +7,8 @@ int main()
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
 
-    mysqlpp::Connection con{"test"};
-    auto query = con.query("select * from person;");
+    mysqlpp::Connection con{"beardad", "0"};
+    auto query = con.query("select * from Expense;");
     auto rlt = query.store();
 
     std::cout << con.client_version() << std::endl;
@@ -19,7 +19,7 @@ int main()
     std::cout << std::setw(20) << "name" << std::setw(20) << "phone" << "email\n";
     for ( auto pos{rlt.begin()}, end = rlt.end(); pos < end; ++pos ) {
         auto& curRow = *pos;
-        std::cout << std::setw(20) << curRow["name"] << std::setw(20) << curRow["phone"] << std::setw(20) << curRow["email"] << '\n';
+        std::cout << std::setw(20) << curRow["Date"] << std::setw(20) << curRow["Expense"] << std::setw(20) << curRow["Comment"] << '\n';
     }
 
     return 0;

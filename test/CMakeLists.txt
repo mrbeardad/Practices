@@ -1,3 +1,3 @@
 project(fuck)
 
-message("${CPACK_GENERATOR}")
+message("${PROJECT_SOURCE_DIR}")

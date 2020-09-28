@@ -1,69 +1,41 @@
+#include <algorithm>
 #include <cmath>
+#include <execution>
 #include <filesystem>
 #include <fstream>
+#include <future>
 #include <iostream>
+#include <iostream>
+#include <map>
 #include <regex>
 #include <string_view>
-#include <utility>
-#include <utility>
-
-using std::cin;
-using std::cout;
+#include <tuple>
+#include <unistd.h>
 
 namespace
 {
-    template <typename T>
-    class Base
+    class CheatSheet: public std::stringstream
     {
     public:
-        void func() const
-        {
-            std::cout << "hi" << std::endl;
-        }
-    private:
-        int i_m;
+        CheatSheet() =default;
     };
-
-    template <typename T>
-    class Derived: Base<T>
-    {
-    public:
-        void test()
-        {
-            this->func();
-        }
-    private:
-        
-    };
-
-    template <typename T>
-    void func(T&& t)
-    {
-        std::cout << t << std::endl;
-    }
-
-    template <typename T, typename... Types>
-    void func(T&& t, Types&&... args)
-    {
-        std::cout << t << std::endl;
-        func(std::forward<Types>(args)...);
-    }
-
-} // namespace
-
-template <template <typename, auto...> class INTS, typename T, T... I>
-void test(INTS<T, I...>)
-{
-    ((std::cout << I), ... );
 }
 
-int main()
+void outer();
+
+template <typename T>
+void test(T&& t)
+{
+    std::cout << "main" << std::endl;
+}
+
+int main(int argc, char* argv[])
 {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
 
-    auto i = 2e24 + 1;
-    std::cout << static_cast<float>(i);
+    std::cout << std::system("bash -c \"miro <(cat ~/.cheat/README.md)\"");
 
     return 0;
 }
+
