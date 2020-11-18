@@ -5,7 +5,7 @@ $$
 
 $$
 [x_{w-1},\space x_{w-2},\space ...,\space x_0]\\
-\to
+\to\newline
 [x_{w-1},...,x_{w-1},x_{w-1},\space x_{w-2},\space ...,\space x_0]\\
 $$
 
