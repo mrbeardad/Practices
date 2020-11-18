@@ -13,7 +13,7 @@ $$
 T2U_w(u)=
 \left\lbrace
 \begin{array}{l}
-x+2^w,&x\lt0 \newline
+x+2^w,&x\lt0\\
 x,&x\ge0
 \end{array}
 \right.
