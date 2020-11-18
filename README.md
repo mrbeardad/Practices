@@ -11,7 +11,7 @@ $$
 
 $$
 T2U_w(u)=
-\left{
+\left\[
 \begin{array}{l}
 x+2^w,&x\lt0 \\
 x,&x\ge0
