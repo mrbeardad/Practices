@@ -1,3 +1,5 @@
-#!/usr/bin/env bash
+#!/bin/bash -x
 
-yay:
+trap "echo get it;exit" 2
+cat
+echo end

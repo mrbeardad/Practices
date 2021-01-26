@@ -1,3 +1,11 @@
-project(fuck)
+cmake_minimum_required(VERSION 3.10)
 
-message("${PROJECT_SOURCE_DIR}")
+project(demo VERSION 0.0)
+
+
+add_executable(exe cmake.cpp)
+
+target_include_directories(exe
+    PRIVATE
+    ../include)
+

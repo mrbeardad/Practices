@@ -1,0 +1,115 @@
+heap profile:      7:   122952 [    13: 18800795] @ heapprofile
+     3:    98304 [     3:    98304] @ 0x7f3b1fa16ce8
+     3:    24576 [     3:    24576] @ 0x7f3b1fa14ec5
+     1:       72 [     1:       72] @ 0x7f3b1fdcc233 0x7f3b1f5d318f
+     0:        0 [     1:  2097152] @ 0x7f3b1fdcc7fd 0x7f3b1fdca9fe 0x7f3b1fdcacae 0x7f3b1fdca27e 0x7f3b1fe012de
+     0:        0 [     1:       16] @ 0x7f3b1fdcbd76 0x7f3b1fdca8f3 0x7f3b1fdcaa32 0x7f3b1fdcacae 0x7f3b1fdca27e 0x7f3b1fe012de
+     0:        0 [     1:  8388608] @ 0x7f3b1fdcc7ef 0x7f3b1fdca9fe 0x7f3b1fdcacae 0x7f3b1fdca27e 0x7f3b1fe012de
+     0:        0 [     1:       43] @ 0x7f3b1f673b4f 0x72502f6461647261
+     0:        0 [     1:  8192000] @ 0x5595969959e8 0x559596991f0d 0x559596990f76 0x559596990365 0x55959698f4b7 0x55959698ded7 0x55959698b806 0x55959698b969 0x7f3b1f60c152
+     0:        0 [     1:       24] @ 0x7f3b1fdcbde9 0x7f3b1fdca8f3 0x7f3b1fdcaa32 0x7f3b1fdcacae 0x7f3b1fdca27e 0x7f3b1fe012de
+
+MAPPED_LIBRARIES:
+559596983000-55959698b000 r--p 00000000 00:00 234801      /home/beardad/Practices/test/test.cpp.exe
+55959698b000-5595969d0000 r-xp 00008000 00:00 234801      /home/beardad/Practices/test/test.cpp.exe
+5595969d0000-5595969f2000 r--p 0004d000 00:00 234801      /home/beardad/Practices/test/test.cpp.exe
+5595969f3000-5595969f4000 r--p 0006f000 00:00 234801      /home/beardad/Practices/test/test.cpp.exe
+5595969f4000-5595969f5000 rw-p 00070000 00:00 234801      /home/beardad/Practices/test/test.cpp.exe
+559597cd4000-5595997a4000 rw-p 00000000 00:00 0           [heap]
+7f3b1d23b000-7f3b1d533000 rw-p 00000000 00:00 0           
+7f3b1d533000-7f3b1d534000 r--p 00000000 00:00 24873       /usr/lib/libdl-2.32.so
+7f3b1d534000-7f3b1d536000 r-xp 00001000 00:00 24873       /usr/lib/libdl-2.32.so
+7f3b1d536000-7f3b1d537000 r--p 00003000 00:00 24873       /usr/lib/libdl-2.32.so
+7f3b1d537000-7f3b1d538000 r--p 00003000 00:00 24873       /usr/lib/libdl-2.32.so
+7f3b1d538000-7f3b1d539000 rw-p 00004000 00:00 24873       /usr/lib/libdl-2.32.so
+7f3b1d539000-7f3b1d59e000 r--p 00000000 00:00 25697       /usr/lib/libicuuc.so.68.2
+7f3b1d59e000-7f3b1d68a000 r-xp 00065000 00:00 25697       /usr/lib/libicuuc.so.68.2
+7f3b1d68a000-7f3b1d712000 r--p 00151000 00:00 25697       /usr/lib/libicuuc.so.68.2
+7f3b1d712000-7f3b1d725000 r--p 001d8000 00:00 25697       /usr/lib/libicuuc.so.68.2
+7f3b1d725000-7f3b1d726000 rw-p 001eb000 00:00 25697       /usr/lib/libicuuc.so.68.2
+7f3b1d726000-7f3b1d728000 rw-p 00000000 00:00 0           
+7f3b1d728000-7f3b1d815000 r--p 00000000 00:00 25685       /usr/lib/libicui18n.so.68.2
+7f3b1d815000-7f3b1d9a6000 r-xp 000ed000 00:00 25685       /usr/lib/libicui18n.so.68.2
+7f3b1d9a6000-7f3b1da34000 r--p 0027e000 00:00 25685       /usr/lib/libicui18n.so.68.2
+7f3b1da34000-7f3b1da45000 r--p 0030b000 00:00 25685       /usr/lib/libicui18n.so.68.2
+7f3b1da45000-7f3b1da46000 rw-p 0031c000 00:00 25685       /usr/lib/libicui18n.so.68.2
+7f3b1da46000-7f3b1da47000 rw-p 00000000 00:00 0           
+7f3b1da47000-7f3b1f587000 r--p 00000000 00:00 25682       /usr/lib/libicudata.so.68.2
+7f3b1f587000-7f3b1f588000 r--p 01b3f000 00:00 25682       /usr/lib/libicudata.so.68.2
+7f3b1f588000-7f3b1f58a000 rw-p 00000000 00:00 0           
+7f3b1f58a000-7f3b1f58d000 r--p 00000000 00:00 24922       /usr/lib/librt-2.32.so
+7f3b1f58d000-7f3b1f591000 r-xp 00003000 00:00 24922       /usr/lib/librt-2.32.so
+7f3b1f591000-7f3b1f593000 r--p 00007000 00:00 24922       /usr/lib/librt-2.32.so
+7f3b1f593000-7f3b1f594000 r--p 00008000 00:00 24922       /usr/lib/librt-2.32.so
+7f3b1f594000-7f3b1f595000 rw-p 00009000 00:00 24922       /usr/lib/librt-2.32.so
+7f3b1f595000-7f3b1f59d000 r--p 00000000 00:00 60024       /usr/lib/libboost_thread.so.1.75.0
+7f3b1f59d000-7f3b1f5a9000 r-xp 00008000 00:00 60024       /usr/lib/libboost_thread.so.1.75.0
+7f3b1f5a9000-7f3b1f5ae000 r--p 00014000 00:00 60024       /usr/lib/libboost_thread.so.1.75.0
+7f3b1f5ae000-7f3b1f5b0000 r--p 00018000 00:00 60024       /usr/lib/libboost_thread.so.1.75.0
+7f3b1f5b0000-7f3b1f5b1000 rw-p 0001a000 00:00 60024       /usr/lib/libboost_thread.so.1.75.0
+7f3b1f5b1000-7f3b1f5b5000 r--p 00000000 00:00 59952       /usr/lib/libboost_chrono.so.1.75.0
+7f3b1f5b5000-7f3b1f5b9000 r-xp 00004000 00:00 59952       /usr/lib/libboost_chrono.so.1.75.0
+7f3b1f5b9000-7f3b1f5bb000 r--p 00008000 00:00 59952       /usr/lib/libboost_chrono.so.1.75.0
+7f3b1f5bb000-7f3b1f5bc000 r--p 00009000 00:00 59952       /usr/lib/libboost_chrono.so.1.75.0
+7f3b1f5bc000-7f3b1f5bd000 rw-p 0000a000 00:00 59952       /usr/lib/libboost_chrono.so.1.75.0
+7f3b1f5bd000-7f3b1f5be000 r--p 00000000 00:00 60022       /usr/lib/libboost_system.so.1.75.0
+7f3b1f5be000-7f3b1f5bf000 r-xp 00001000 00:00 60022       /usr/lib/libboost_system.so.1.75.0
+7f3b1f5bf000-7f3b1f5c0000 r--p 00002000 00:00 60022       /usr/lib/libboost_system.so.1.75.0
+7f3b1f5c0000-7f3b1f5c1000 r--p 00002000 00:00 60022       /usr/lib/libboost_system.so.1.75.0
+7f3b1f5c1000-7f3b1f5c2000 rw-p 00003000 00:00 60022       /usr/lib/libboost_system.so.1.75.0
+7f3b1f5c2000-7f3b1f5c9000 r--p 00000000 00:00 24913       /usr/lib/libpthread-2.32.so
+7f3b1f5c9000-7f3b1f5d9000 r-xp 00007000 00:00 24913       /usr/lib/libpthread-2.32.so
+7f3b1f5d9000-7f3b1f5de000 r--p 00017000 00:00 24913       /usr/lib/libpthread-2.32.so
+7f3b1f5de000-7f3b1f5df000 r--p 0001b000 00:00 24913       /usr/lib/libpthread-2.32.so
+7f3b1f5df000-7f3b1f5e0000 rw-p 0001c000 00:00 24913       /usr/lib/libpthread-2.32.so
+7f3b1f5e0000-7f3b1f5e4000 rw-p 00000000 00:00 0           
+7f3b1f5e4000-7f3b1f60a000 r--p 00000000 00:00 24864       /usr/lib/libc-2.32.so
+7f3b1f60a000-7f3b1f757000 r-xp 00026000 00:00 24864       /usr/lib/libc-2.32.so
+7f3b1f757000-7f3b1f7a3000 r--p 00173000 00:00 24864       /usr/lib/libc-2.32.so
+7f3b1f7a3000-7f3b1f7a6000 r--p 001be000 00:00 24864       /usr/lib/libc-2.32.so
+7f3b1f7a6000-7f3b1f7a9000 rw-p 001c1000 00:00 24864       /usr/lib/libc-2.32.so
+7f3b1f7a9000-7f3b1f7af000 rw-p 00000000 00:00 0           
+7f3b1f7af000-7f3b1f7b2000 r--p 00000000 00:00 22922       /usr/lib/libgcc_s.so.1
+7f3b1f7b2000-7f3b1f7c3000 r-xp 00003000 00:00 22922       /usr/lib/libgcc_s.so.1
+7f3b1f7c3000-7f3b1f7c7000 r--p 00014000 00:00 22922       /usr/lib/libgcc_s.so.1
+7f3b1f7c7000-7f3b1f7c8000 r--p 00017000 00:00 22922       /usr/lib/libgcc_s.so.1
+7f3b1f7c8000-7f3b1f7c9000 rw-p 00018000 00:00 22922       /usr/lib/libgcc_s.so.1
+7f3b1f7c9000-7f3b1f7d8000 r--p 00000000 00:00 24880       /usr/lib/libm-2.32.so
+7f3b1f7d8000-7f3b1f874000 r-xp 0000f000 00:00 24880       /usr/lib/libm-2.32.so
+7f3b1f874000-7f3b1f90d000 r--p 000ab000 00:00 24880       /usr/lib/libm-2.32.so
+7f3b1f90d000-7f3b1f90e000 r--p 00143000 00:00 24880       /usr/lib/libm-2.32.so
+7f3b1f90e000-7f3b1f90f000 rw-p 00144000 00:00 24880       /usr/lib/libm-2.32.so
+7f3b1f90f000-7f3b1f9a5000 r--p 00000000 00:00 23383       /usr/lib/libstdc++.so.6.0.28
+7f3b1f9a5000-7f3b1fa91000 r-xp 00096000 00:00 23383       /usr/lib/libstdc++.so.6.0.28
+7f3b1fa91000-7f3b1fada000 r--p 00182000 00:00 23383       /usr/lib/libstdc++.so.6.0.28
+7f3b1fada000-7f3b1fadb000 ---p 001cb000 00:00 23383       /usr/lib/libstdc++.so.6.0.28
+7f3b1fadb000-7f3b1fae8000 r--p 001cb000 00:00 23383       /usr/lib/libstdc++.so.6.0.28
+7f3b1fae8000-7f3b1fae9000 rw-p 001d8000 00:00 23383       /usr/lib/libstdc++.so.6.0.28
+7f3b1fae9000-7f3b1faec000 rw-p 00000000 00:00 0           
+7f3b1faec000-7f3b1fb0e000 r--p 00000000 00:00 59976       /usr/lib/libboost_locale.so.1.75.0
+7f3b1fb0e000-7f3b1fb9b000 r-xp 00022000 00:00 59976       /usr/lib/libboost_locale.so.1.75.0
+7f3b1fb9b000-7f3b1fbbd000 r--p 000af000 00:00 59976       /usr/lib/libboost_locale.so.1.75.0
+7f3b1fbbd000-7f3b1fbc3000 r--p 000d0000 00:00 59976       /usr/lib/libboost_locale.so.1.75.0
+7f3b1fbc3000-7f3b1fbc4000 rw-p 000d6000 00:00 59976       /usr/lib/libboost_locale.so.1.75.0
+7f3b1fbc4000-7f3b1fbd9000 r--p 00000000 00:00 234722      /usr/lib/libtcmalloc.so.4.5.6
+7f3b1fbd9000-7f3b1fbfe000 r-xp 00015000 00:00 234722      /usr/lib/libtcmalloc.so.4.5.6
+7f3b1fbfe000-7f3b1fc0c000 r--p 0003a000 00:00 234722      /usr/lib/libtcmalloc.so.4.5.6
+7f3b1fc0c000-7f3b1fc0e000 r--p 00047000 00:00 234722      /usr/lib/libtcmalloc.so.4.5.6
+7f3b1fc0e000-7f3b1fc0f000 rw-p 00049000 00:00 234722      /usr/lib/libtcmalloc.so.4.5.6
+7f3b1fc0f000-7f3b1fdc5000 rw-p 00000000 00:00 0           
+7f3b1fdc5000-7f3b1fdca000 r--p 00000000 00:00 234719      /usr/lib/libprofiler.so.0.5.1
+7f3b1fdca000-7f3b1fdd0000 r-xp 00005000 00:00 234719      /usr/lib/libprofiler.so.0.5.1
+7f3b1fdd0000-7f3b1fdd3000 r--p 0000b000 00:00 234719      /usr/lib/libprofiler.so.0.5.1
+7f3b1fdd3000-7f3b1fdd4000 ---p 0000e000 00:00 234719      /usr/lib/libprofiler.so.0.5.1
+7f3b1fdd4000-7f3b1fdd5000 r--p 0000e000 00:00 234719      /usr/lib/libprofiler.so.0.5.1
+7f3b1fdd5000-7f3b1fdd6000 rw-p 0000f000 00:00 234719      /usr/lib/libprofiler.so.0.5.1
+7f3b1fdd6000-7f3b1fddd000 rw-p 00000000 00:00 0           
+7f3b1fde0000-7f3b1fdf0000 rw-p 00000000 00:00 0           
+7f3b1fdf0000-7f3b1fdf2000 r--p 00000000 00:00 24852       /usr/lib/ld-2.32.so
+7f3b1fdf2000-7f3b1fe13000 r-xp 00002000 00:00 24852       /usr/lib/ld-2.32.so
+7f3b1fe13000-7f3b1fe1c000 r--p 00023000 00:00 24852       /usr/lib/ld-2.32.so
+7f3b1fe1c000-7f3b1fe1d000 r--p 0002b000 00:00 24852       /usr/lib/ld-2.32.so
+7f3b1fe1d000-7f3b1fe1f000 rw-p 0002c000 00:00 24852       /usr/lib/ld-2.32.so
+7ffcbcb50000-7ffcbcb71000 rw-p 00000000 00:00 0           [stack]
+7ffcbcb7e000-7ffcbcb81000 r--p 00000000 00:00 0           [vvar]
+7ffcbcb81000-7ffcbcb83000 r-xp 00000000 00:00 0           [vdso]

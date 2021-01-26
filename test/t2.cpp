@@ -11,3 +11,12 @@ void test(T&& t)
     test(2);
 }
 
+int main()
+{
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+
+    std::cout << __cplusplus << std::endl;
+
+    return 0;
+}

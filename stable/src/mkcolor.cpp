@@ -82,7 +82,7 @@ namespace
         // 解析json，获取用户指定颜色
         std::vector<std::string> tmpColors{};
         std::ifstream jsonStrm{json, std::ios_base::in};
-        if ( jsonStrm ) {
+        if ( !jsonStrm ) {
             std::cout << "\033[31mError:\033[m no such file - " << json << std::endl;
             std::exit(EXIT_FAILURE);
         }

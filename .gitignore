@@ -1,8 +1,9 @@
 .*
-!.gitignore
-!.ycm_extra_conf.py
 *.o
 *.so
-a.out
 *.exe
-/test/build/
+a.out
+/**/build/*
+!.gitignore
+!.gitkeep
+!.ycm_extra_conf.py

@@ -1,4 +1,4 @@
 int main()
 {
-    1+1;
+    if (val1 && val2 || val3);
 }

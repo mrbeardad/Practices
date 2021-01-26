@@ -1,4 +1,5 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
+#!/bin/python
 
-print("hello world")
+import unicodedata
+
+print(unicodedata.east_asian_width("ヾ"));
