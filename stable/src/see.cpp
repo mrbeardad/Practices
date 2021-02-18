@@ -384,7 +384,11 @@ int main(int argc, char* argv[])
             if ( auto pid = mine::handle(fork()); pid == 0 ) {
                 dup2(fds[0], STDIN_FILENO);
                 close(fds[1]);
-                mine::handle(execlp(pager, pager, nullptr));
+                if ( pager == "less"s ) {
+                    mine::handle(execlp(pager, pager, "-S", nullptr));
+                } else {
+                    mine::handle(execlp(pager, pager, nullptr));
+                }
             } else {
                 dup2(fds[1], STDOUT_FILENO);
                 close(fds[1]);

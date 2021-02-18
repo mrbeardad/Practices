@@ -22,18 +22,11 @@ void test_yas()
     std::remove("file");
     yas::save<yas::file | yas::json>("file", YAS_OBJECT("obj", map, obj));
     std::cout << std::ifstream{"file"}.rdbuf();
-
-    v.clear();
-    yas::load<yas::file | yas::json>("json", YAS_OBJECT_NVP("j", ("map", obj), ("vector", v)));
-    std::copy(v.begin(), v.end(), std::ostream_iterator<int>{std::cout, ", "});
 }
 
 int main(int argc, char* argv[])
 {
-    test_mem();
-    test_mem();
-    test_mem();
-    test_mem();
+    test_yas();
 
     return 0;
 }

@@ -1,10 +1,10 @@
-/*
+/******************************************************************************
  * mine.hpp -- My personal header file for C++
  * Copyright (c) 2020 Heachen Bear
  * Author: Heachen Bear
  * Email: mrbeardad@qq.com
  * License: MIT
-*/
+*******************************************************************************/
 
 #ifndef MRBEARDAD_MINE_HPP
 #define MRBEARDAD_MINE_HPP 1
@@ -19,7 +19,7 @@ struct CloseSyncWithStdio
         std::cin.tie(nullptr);
     }
 };
-inline CloseSyncWithStdio closeSyncWithStdio{};
+inline CloseSyncWithStdio CloseSyncWithStdio{};
 #endif // defined(_GLIBCXX_IOSTREAM) || defined(_IOSTREAM_)
 
 
@@ -84,7 +84,6 @@ using namespace std::placeholders;
 #endif // defined(_GLIBCXX_FUNCTIONAL) || defined(_FUNCTIONAL_)
 
 #ifdef ASIO_HPP
-namespace ip = asio::ip;
 using asio::ip::tcp;
 using asio::ip::udp;
 using asio::ip::icmp;
@@ -95,60 +94,61 @@ namespace ssl = asio::ssl;
 #endif // ASIO_SSL_HPP
 
 #ifdef ASIO_HAS_LOCAL_SOCKETS
-using unix_stream = asio::local::stream_protocol;
-using unix_dgram  = asio::local::datagram_protocol;
+using uds = asio::local::stream_protocol;
+using udd = asio::local::datagram_protocol;
 #endif // ASIO_HAS_LOCAL_SOCKETS
 
+/*************************************************************************************************/
+
 #include <functional>
+#include <system_error>
 #include <type_traits>
 
 namespace mine
 {
-    template <typename Functor>
-    struct YCombinator
+template <typename Functor>
+struct YCombinator
+{
+    Functor func_;
+
+    template <typename... Args>
+    decltype(auto) operator()(Args&&... args)
     {
-        Functor func_;
-
-        template <typename... Args>
-        decltype(auto) operator()(Args&&... args)
-        {
-            return func_(*this, std::forward<Args>(args)...);
-        }
-    };
-
-
-    template <typename Functor>
-    YCombinator<std::decay_t<Functor> > make_y_conbinator(Functor&& f)
-    {
-        return {std::forward<Functor>(f)};
+        return func_(*this, std::forward<Args>(args)...);
     }
+};
 
 
-#ifdef _STRING_H
+template <typename Functor>
+YCombinator<std::decay_t<Functor> > make_y_conbinator(Functor&& f)
+{
+    return {std::forward<Functor>(f)};
+}
+
+/*************************************************************************************************/
+
+#if defined(_STRING_H) || defined(_INC_STRING)
 template <typename T>
 T handle(T sysCallRet)
 {
     if ( sysCallRet < 0 ) {
-        printf("\033[34m%s\033[m|line %d|%s():\033[33m %s\033[m",
-                __FILE__, __LINE__, __func__, strerror(errno));
-        exit(1);
+        throw std::system_error{errno, std::generic_category()};
     } else {
         return sysCallRet;
     }
 }
+
 
 template <typename T>
 T* handle(T* sysCallRet)
 {
     if ( sysCallRet == nullptr ) {
-        printf("\033[34m%s\033[m|line %d|%s():\033[33m %s\033[m",
-                __FILE__, __LINE__, __func__, strerror(errno));
-        exit(1);
+        throw std::system_error{errno, std::generic_category()};
     } else {
         return sysCallRet;
     }
 }
-#endif // _STDIO_H
+#endif // defined(_STRING_H) || defined(_INC_STRING)
 
 } // namespace mine
 

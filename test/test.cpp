@@ -39,6 +39,7 @@
 
 #include "mine.hpp"
 
+#if 0
 std::mutex M{};
 
 void test_thread_stack()
@@ -53,6 +54,7 @@ struct A
 {
     int     i_;
     double  d_;
+    A(int);
     std::strong_ordering operator<=>(const A& a) const =default;
     struct T;
 };
@@ -136,7 +138,7 @@ void test_sourcehighlight()
 
 void test_regex()
 {
-    std::cout << std::regex_replace("<!--[fuck](http://fuckyou.com)-->", R"((<!--.*?-->))"_rgx, "\033[31m$1\033[m");
+    // std::cout << std::regex_replace("<!--[fuck](http://fuckyou.com)-->", R"((<!--.*?-->))"_rgx, "\033[31m$1\033[m");
 }
 
 void test_display_width()
@@ -145,9 +147,22 @@ void test_display_width()
 }
 
 
+#include "unicode.h"
+#endif // 0
+
+void test_regex()
+{
+    std::cout << std::regex_replace("`*fuck**f`", R"(`((([^*]*)(\**))+?)`)"_rgx, "1:$1\n2:$2\n3:$3\n4:$4");
+}
+
+
 int main(int argc, char* argv[])
 {
-    test_display_width();
+    test_regex();
 
     return 0;
 }
+int Test::get() {
+
+}
+
