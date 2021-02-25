@@ -16,7 +16,7 @@
 #include <sys/wait.h>
 #include <unistd.h>
 
-namespace co = std::chrono;
+namespace ch = std::chrono;
 
 namespace
 {

@@ -8,3 +8,22 @@
  * Last Modified By  : Heachen Bear <mrbeardad@qq.com>
  */
 
+#include <iostream>
+#include <string>
+#include <unistd.h>
+
+int main()
+{
+#if defined(NDEBUG)
+    std::cout << "hello" << std::endl;
+#else
+    std::string s{};
+    std::cin >> s;
+    std::cout << "fuck: " << s  << std::endl;
+    system("zsh");
+    pause();
+#endif // defined(NDEBUG)
+
+    return 0;
+}
+

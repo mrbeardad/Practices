@@ -33,11 +33,6 @@ using io = std::ios_base;
 #endif // defined(_IOS_BASE_H) || defined(_XIOSBASE_)
 
 
-#if defined(_GLIBCXX_THREAD) || defined(_THREAD_)
-namespace th = std::this_thread;
-#endif // defined(_GLIBCXX_THREAD) || defined(_THREAD_)
-
-
 #if defined(_GLIBCXX_CHRONO) || defined(_CHRONO_)
 namespace ch = std::chrono;
 #   if __cplusplus >= 201402
