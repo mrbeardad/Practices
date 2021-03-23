@@ -11,12 +11,15 @@ void test(T&& t)
     test(2);
 }
 
-int main()
-{
-    std::ios_base::sync_with_stdio(false);
-    std::cin.tie(nullptr);
-
-    std::cout << __cplusplus << std::endl;
-
-    return 0;
-}
+/*! \struct T
+ *  \brief Brief struct description
+ *
+ *  Detailed description
+ */
+struct T {
+    T()
+    {
+        std::cout << "contruct T" << std::endl;
+    }/*!< Description */
+} /* optional variable list */;
+T t{};

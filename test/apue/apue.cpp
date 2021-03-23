@@ -62,10 +62,15 @@ void test_sighup()
     std::this_thread::sleep_for(30s);
 }
 
+void test_link()
+{
+    mine::handle(link("tl", "tlllll"));
+}
+
 int main()
 {
-    test_sighup();
-
+    char a[2]{'a', 'b'};
+    auto [b, std::ignore] = a;
     return 0;
 }
 int not_main()
@@ -120,7 +125,7 @@ namespace
     {
         while ( true ) {
             std::cout << "Thread 2: " << getpriority(PRIO_PROCESS, 0) << std::endl;
-            th::sleep_for(3s);
+            std::this_thread::sleep_for(3s);
         }
     }
 

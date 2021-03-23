@@ -1,6 +1,5 @@
 #include <iostream>
 
-#include "mine.hpp"
 
 int main()
 {

@@ -1,36 +1,37 @@
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
 
-struct A
+struct Turtle
 {
-    virtual ~A() {};
-    virtual double get_value(int i) const =0;
+    int i_;
+    virtual ~Turtle() =default;
+    virtual int get_value() const =0;
+    virtual int set_value(int i) =0;
 };
 
-struct MockA: public A
+struct MockTurtle: public Turtle
 {
-    MOCK_METHOD(double, get_value, (int i), (const, override));
+    MOCK_METHOD(int, get_value, (), (const, override));
+    MOCK_METHOD(int, set_value, (int i), (override));
 };
 
-TEST(TestA, TestMockSeq)
+TEST(TestTurtle, TestMockSeq)
 {
-    MockA ma{};
+    MockTurtle mockT{};
     {
-    testing::InSequence seq{};
-    EXPECT_CALL(ma, get_value(0))
-        .WillOnce(testing::Return(0.0))
-        .RetiresOnSaturation();
-    EXPECT_CALL(ma, get_value)
-        .WillOnce(testing::Return(1.0))
-        .RetiresOnSaturation();
-    }
-    EXPECT_EQ(ma.get_value(1), 0);
-    EXPECT_EQ(ma.get_value(1), 1);
-}
+        testing::InSequence seq{};
 
-TEST(FooDeathTest, Demo)
-{
-    int* p2i{};
-    // EXPECT_DEATH(*p2i, "seg");
-    EXPECT_EXIT(*p2i = 1, testing::KilledBySignal(SIGSEGV), "");
+        EXPECT_CALL(mockT, set_value(0))
+            .WillOnce(testing::Return(10))
+            .WillOnce(testing::Return(20));
+
+        EXPECT_CALL(mockT, set_value(1))
+            .WillOnce(testing::Return(11))
+            .WillOnce(testing::Return(12));
+    }
+
+    EXPECT_EQ(mockT.set_value(0), 10);
+    EXPECT_EQ(mockT.set_value(0), 20);
+    EXPECT_EQ(mockT.set_value(1), 11);
+    EXPECT_EQ(mockT.set_value(1), 12);
 }

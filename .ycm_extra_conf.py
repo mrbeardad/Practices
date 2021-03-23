@@ -1,2 +1,2 @@
 def Settings( **kwargs ):
-    return { 'flags': [ '-x', 'c++', '-std=c++17', '-fcoroutine', '-I.', '-Iinclude', '-O2' ], }
+    return { 'flags': [ '-x', 'c++', '-std=c++20', '-fcoroutine-ts', '-I.', '-Iinclude', '-O2' ], }

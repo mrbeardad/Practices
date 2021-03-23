@@ -1,3 +1,4 @@
+#include <asio.hpp>
 #include <filesystem>
 #include <iostream>
 
@@ -21,8 +22,15 @@ std::string readable_size(double nbytes)
     return std::to_string(nbytes) + Unites[times];
 }
 
-#include <mine.hpp>
+
 int main()
+{
+    
+
+    return 0;
+}
+
+int not_main()
 {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);

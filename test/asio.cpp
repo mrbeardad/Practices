@@ -11,6 +11,7 @@
 
 #include "mine.hpp"
 
+#if 0
 void test_timer_expires_after()
 {
     asio::io_context ioc{};
@@ -25,7 +26,7 @@ void test_timer_expires_after()
 void test_asio_ssl_server()
 {
     asio::io_context            ioc{};
-    tcp::acceptor               acceptor{ioc, tcp::endpoint{ip::address_v4::loopback(), 50001}};
+    tcp::acceptor               acceptor{ioc, tcp::endpoint{asio::ip::address_v4::loopback(), 50001}};
     tcp::socket                 sock{ioc};
     std::vector<char>           buf(1024);
 
@@ -65,7 +66,7 @@ void test_asio_ssl_client()
         // return preverified;
     // });
     ssl::stream<tcp::socket>    sock{ioc, ctx};
-    sock.lowest_layer().connect(tcp::endpoint{ip::address_v4::loopback(), 50001});
+    sock.lowest_layer().connect(tcp::endpoint{asio::ip::address_v4::loopback(), 50001});
     sock.handshake(ssl::stream_base::client);
 
     std::cin >> buf;
@@ -75,7 +76,7 @@ void test_asio_ssl_client()
 
 asio::awaitable<void> test_asio_coroutine_impl(asio::io_context& ioc)
 {
-    tcp::acceptor acceptor{ioc, tcp::endpoint{ip::address_v4::loopback(), 50001}};
+    tcp::acceptor acceptor{ioc, tcp::endpoint{asio::ip::address_v4::loopback(), 50001}};
 
     auto sock = co_await acceptor.async_accept(asio::use_awaitable);
     std::cout << "acceptor: " << sock.remote_endpoint() << std::endl;
@@ -135,15 +136,27 @@ void test_shared_co_spawn(asio::io_context& ioc)
     server->start(ioc);
 }
 
+#endif
+
+asio::awaitable<void> server()
+{
+    auto ioc = co_await asio::this_coro::executor;
+    tcp::acceptor ac{ioc, tcp::endpoint{asio::ip::address_v4::loopback(), 60000}};
+    auto session = co_await ac.async_accept(asio::use_awaitable);
+    std::string buf(1024, '\0');
+    while ( true ) {
+        auto readSize = co_await session.async_read_some(asio::buffer(buf), asio::use_awaitable);
+        std::cout << buf << std::endl;
+    }
+}
 int main()
 {
     asio::io_context ioc{1};
-    test_shared_co_spawn(ioc);
+    asio::co_spawn(ioc, server, [] (std::exception_ptr ptr2excep) {
+        std::rethrow_exception(ptr2excep);
+    });
     ioc.run();
-    // test_asio_coroutine();
-    // test_asio_ssl_client();
-    // test_asio_ssl_server();
-    // test_default_option();
+    std::cout << "finish!" << std::endl;
 
     return 0;
 }
