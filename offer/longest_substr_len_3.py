@@ -3,22 +3,14 @@
 
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
-        charInCurStr = {}
-        maxLen = 0
-        curLen = 0
-        idx = 0
-        while idx < len(s):
-            val = s[idx]
-            if val not in charInCurStr:
-                curLen += 1
-                charInCurStr[val] = idx
-                idx += 1
-            else:
-                maxLen = max(maxLen, curLen)
-                curLen = 0
-                idx = charInCurStr[val] + 1
-                charInCurStr = {}
+        maxLen, startIdx, idxOfLastArvChar = 0, 0, {}
+        for idx, char in enumerate(s):
+            if idxOfLastArvChar.get(char, -1) >= startIdx:
+                maxLen = max(maxLen, idx - startIdx)
+                startIdx = idxOfLastArvChar[char] + 1
+            idxOfLastArvChar[char] = idx
         return maxLen
 
 
-print(Solution().lengthOfLongestSubstring("''"))
+print(Solution().lengthOfLongestSubstring("abcade"))
+print(Solution().lengthOfLongestSubstring("abcabcbb"))

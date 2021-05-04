@@ -1,4 +1,5 @@
 #include <algorithm>
+#include <gtest/gtest.h>
 #include <iostream>
 #include <iterator>
 #include <limits>
@@ -8,24 +9,28 @@ class SelectionSort {
 public:
     int* selectionSort(int* A, int n) {
         // write code here
-        for ( int right{n}; right > 0; --right ) {
+        for ( ssize_t right{n - 1}; right > 0; --right ) {
             int maxIdx{};
-            for ( size_t idx{1}; idx < right; ++idx ) {
-                if ( A[idx] > A[maxIdx] )
-                    maxIdx = idx;
-            }
-            std::swap(A[maxIdx], A[right - 1]);
+            for ( ssize_t idx{1}; idx <= right; ++idx )
+                maxIdx = A[idx] > A[maxIdx] ? idx : maxIdx;
+            std::swap(A[maxIdx], A[right]);
         }
         return A;
     }
 };
 
-int main()
-{
-    std::vector<int> vec{std::istream_iterator<int>{std::cin}, std::istream_iterator<int>{}};
-    SelectionSort{}.selectionSort(vec.data(), vec.size());
-    std::copy(vec.begin(), vec.end(), std::ostream_iterator<int>{std::cout, ","});
 
-    return 0;
+TEST(TestSelectSort, Test)
+{
+    std::vector<int> needSort{5, 1, 2, 3, 7, 9, 6, 4, 8};
+    std::vector<int> sorted{1, 2, 3, 4, 5, 6, 7, 8, 9};
+
+    SelectionSort{}.selectionSort(needSort.data(), needSort.size());
+    EXPECT_EQ(needSort, sorted);
+
+    needSort.clear();
+    sorted.clear();
+    SelectionSort{}.selectionSort(needSort.data(), needSort.size());
+    EXPECT_EQ(needSort, sorted);
 }
 

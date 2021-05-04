@@ -42,8 +42,8 @@ namespace
 
 void signal_handler(int signal)
 {
-    std::ofstream outf{"test", io::out | io::trunc};
-    outf << signal_names[signal] << std::endl;
+    // std::ofstream outf{"test", io::out | io::trunc};
+    std::cout << signal_names[signal] << std::endl;
 }
 
 void test_sighup()
@@ -69,8 +69,14 @@ void test_link()
 
 int main()
 {
-    char a[2]{'a', 'b'};
-    auto [b, std::ignore] = a;
+    signal(SIGCHLD, SIG_IGN);
+    if ( fork() == 0 ) {
+        exit(0);
+    }
+    pause();
+    pause();
+    std::cout << wait(nullptr) << std::endl;
+
     return 0;
 }
 int not_main()

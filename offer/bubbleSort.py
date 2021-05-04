@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import math
+def bubble_sort(needSort):
 
-print(1.005**365)

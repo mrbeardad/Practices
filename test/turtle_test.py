@@ -28,4 +28,11 @@ def olympic_rings(penWidth=15, penSpeed=0):
 
 
 if __name__ == '__main__':
-    olympic_rings()
+    #  olympic_rings()
+    screen = turtle.Screen()
+    pen = turtle.Turtle()
+    screen.setup(width=800, height=800)
+    pen.fillcolor('#000000')
+    pen.begin_fill()
+    pen.circle(100, 360)
+    pen.end_fill()

@@ -4,7 +4,8 @@
 
 int main()
 {
-    std::cout << 1 << std::endl;
+    std::string s{};
+    std::cout << std::numeric_limits<int>::min() << std::endl;
 
     return 0;
 }

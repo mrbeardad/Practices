@@ -1,0 +1,10 @@
+9
+query
+append 1 10
+query
+append 2 20
+query
+append 3 15
+query
+append 1 10
+query
