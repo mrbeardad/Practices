@@ -13,7 +13,7 @@ RandomIter topK_v1(RandomIter begin, RandomIter end, int kth,
     if ( kth == 1 && end - begin == 1 )
         return begin;
     else if ( end - begin <= 1 )
-        throw std::logic_error{"bad iterator range or bad kth"};
+        return end;
 
     auto mid = begin + (end - begin) / 2;
     auto last = end - 1;

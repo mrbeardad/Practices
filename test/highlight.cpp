@@ -29,9 +29,9 @@ cin cout cerr clog _1                                       // Identifier   6
 this nullptr true false
 is_same_v in out app
 
-0xff, 1'330                                                 // Number       3 b
+0xabcdef123456789                                           // Number       3 b
 
-2.5e8 1e16                                                  // Float        4 b
+-0.1234e+56789                                              // Float        4 b
 
 "string\tis\x20italic\n"                                    // String       7 i
 
