@@ -1,14 +1,15 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-def print_multi_matrix(n : int):
-    print("+" + "----+" * n)
-    for i in range(n):
-        print("|" + "    |" * n)
-        print("|" + "    |" * n)
-        print("+" + "----+" * n)
+import wordcloud
+import jieba
+
+def main():
+    # 机器没宋体
+    text = '你他娘的可真是可人才'
+    wc = wordcloud.WordCloud('SourceHanSansCN-Medium.otf', background_color='red', max_words=20)
+    wc.generate(' '.join(jieba.lcut(text)))
+    wc.to_file('test.png')
 
 if __name__ == '__main__':
-    rank = int(input("input a integer as rank: "))
-    print()
-    print_multi_matrix(rank)
+    main()

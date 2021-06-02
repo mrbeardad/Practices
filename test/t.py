@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-a = 1
-print(dir(a))
+for i in {1:1.5, 2:2.5}:
+    print(i)

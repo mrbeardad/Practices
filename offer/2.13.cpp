@@ -29,8 +29,8 @@ public:
         return A;
     }
 
-    template<typename RandomItr, typename Compare=std::less<decltype(*RandomItr{})>>
-    void percolate_down(RandomItr begin, RandomItr end, RandomItr hole, Compare comp=std::less<decltype(*RandomItr{})>{})
+    template<typename RandomItr, typename Compare=std::less<typename RandomItr::value_type> >
+    void percolate_down(RandomItr begin, RandomItr end, RandomItr hole, Compare comp=Compare{})
     {
         auto holeVal = std::move(*hole);
         auto leftChild = [begin] (RandomItr root) {

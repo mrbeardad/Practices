@@ -1,7 +1,7 @@
 #include <iostream>
 struct T
 {
-    T()
+    T(int i)
     {
         std::cout << 'T' << std::endl;
     }
