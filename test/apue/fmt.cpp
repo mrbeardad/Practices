@@ -17,9 +17,11 @@ enum class emphasis : uint8_t {
 
 int main()
 {
-    fmt::print(fmt::emphasis::italic, "");
-    std::vector<int> v{1,2,3,4,5};
-    fmt::print("\n{}", v);
+    // fmt::print(fmt::emphasis::italic, "");
+    // std::vector<int> v{1,2,3,4,5};
+    // fmt::print("\n{}", v);
+    std::string s{"熊海成爸爸de🏠"};
+    std::cout << fmt::detail::count_code_points(s);
 
     return 0;
 }

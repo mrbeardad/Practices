@@ -1,33 +1,25 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-import turtle
+import sys
 
-def graphic(length):
-    turtle.forward(60)
-    turtle.left(180)
-    turtle.circle(-length,180,20)
-    turtle.left(120)
-    turtle.forward(length)
-    turtle.right(60)
-    turtle.forward(length)
-    turtle.right(120)
-    turtle.forward(length)
-    turtle.right(60)
-    turtle.forward(length)
-    turtle.left(120)
-    turtle.circle(-length,180,20)
-    turtle.right(180)
-    turtle.forward(60)
+def variadic(arg1, *args):
+    print(arg1, args)
 
-for count,color in zip(range(5),['aliceblue','powderblue','lightblue','skyblue','lightskyblue']):
-    turtle.begin_fill()
-    turtle.fillcolor(color)
-    graphic(length)
-    turtle.right(72)
-    turtle.end_fill()
+#  try:
+    #  try:
+        #  try:
+            #  raise(Exception("1 "))
+#
+        #  except Exception as excep:
+            #  raise(Exception("2 "))
+#
+    #  except:
+        #  raise(Exception("4 ")) from Exception("3")
+#
+#  except Exception as excep:
+    #  raise
+    #  print(excep)
+    #  print(excep.__cause__.__context__)
+    #  print(excep.__context__)
 
-length = length/2
-if length > 10:
-  draw(length)
-
-mainloop()
+print(str(['w', '1']))

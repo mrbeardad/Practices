@@ -6,4 +6,9 @@ struct T
         std::cout << 'T' << std::endl;
     }
 };
-T t{};
+int main()
+{
+    std::cout << "hei" << std::endl;
+
+    return 0;
+}

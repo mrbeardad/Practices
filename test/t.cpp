@@ -14,11 +14,11 @@ int A{};
 
 int main()
 {
-    int i;
-    std::cin >> i;
-    auto* str = "fuck";
-    std::cout << i << str << A << std::endl;
-    pause();
+    int {};
+    auto* pI = new int{};
+
+    std::cout << &i << pI << std::endl;
+
     return 0;
 }
 
