@@ -1,0 +1,23 @@
+{
+    "$schema": "https://puremourning.github.io/vimspector/schema/vimspector.schema.json",
+    "configurations": {
+        "debug Python": {
+            "adapter": "debugpy",
+            "configuration": {
+                "request": "launch",
+                "type": "python",
+                "program": "${file}",
+                "stopOnEntry": true,
+                "console": "integratedTerminal"
+            },
+            "breakpoints": {
+                "exception": {
+                    "raised": "N",
+                    "uncaught": "",
+                    "userUnhandled": ""
+                }
+            }
+        }
+    }
+}
+

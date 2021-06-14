@@ -1,0 +1,6 @@
+[test_go]
+command = "go"
+args = ["test"]
+
+[test_go.options]
+cwd = "${fileDirname}"

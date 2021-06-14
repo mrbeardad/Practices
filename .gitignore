@@ -7,3 +7,5 @@ build/
 !.gitignore
 !.gitkeep
 !.ycm_extra_conf.py
+!.vimspector.json
+!.SpaceVim.d/

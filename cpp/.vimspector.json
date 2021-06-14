@@ -1,0 +1,17 @@
+{
+    "$schema": "https://puremourning.github.io/vimspector/schema/vimspector.schema.json",
+    "configurations": {
+        "debug C++": {
+            "adapter": "vscode-cpptools",
+            "configuration": {
+                "request": "launch",
+                "program": "${file}.exe",
+                "externalConsole": false,
+                "stopAtEntry": true,
+                "stopOnEntry": true,
+                "setupCommands": [ { "text": "-enable-pretty-printing" } ],
+                "MImode": "gdb"
+            }
+        }
+    }
+}
