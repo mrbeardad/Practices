@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-ls = ['a', 'b', 'c', 'd']
+d = {{1, "s"}: 1}
 
-print(','.join(ls))
+print(d)

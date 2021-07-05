@@ -1,6 +1,6 @@
 [test_go]
 command = "go"
-args = ["test"]
+args = ["test", "-v", "${file}"]
 
 [test_go.options]
 cwd = "${fileDirname}"
